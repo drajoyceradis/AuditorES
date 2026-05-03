@@ -49,3 +49,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+        steps:
+  - name: Checkout
+    uses: actions/checkout@2d1c1073293bba58edc45bf91e1e630992d4f108  #  v4
+  - name: Setup Pages
+    uses: actions/configure-pages@983d7736d9b0ae8cb845ca72291b4192da3fec63  # v5
+  - name: Build with Jekyll
+    uses: actions/jekyll-build-pages@44dcf7e57f0886b0a5e0e72016563901e34baf13  # v1
+    with:
+      source: ./
+      destination: ./_site
+  - name: Upload artifact
+    uses: actions/upload-pages-artifact@0fb921f8c58c45b45ba9300f8241b6522f5b58aa  # v3
+  
+  # In the deploy job:
+  - name: Deploy to GitHub Pages
+    id: deployment
+    uses: actions/deploy-pages@b97bd36e108db586be4b5b19cf97b6c69428352e2  # v5
